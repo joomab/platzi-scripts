@@ -11,7 +11,17 @@ pipeline {
   stages {
     stage('Get Current UserName') {
       steps{
-        sh '/usr/bin/curl -k -s -u admin:admin -o /tmp/api.xml \$BUILD_URL/api/xml || true && THE_USERID=`cat /tmp/api.xml | grep -oP \'(?<=<userId>).*?(?=</userId>)\'` && echo -e "\$THE_USERID \\c" > /tmp/user_id.txt'
+        sh """
+            /usr/bin/curl -k -s -u \
+            admin:admin -o \
+            /tmp/api.xml \
+            \$BUILD_URL/api/xml || true 
+
+            THE_USERID=`cat /tmp/api.xml | grep -oP '(?<=<userId>).*?(?=</userId>)'`
+            THE_USERNAME=`cat /tmp/api.xml | grep -oP '(?<=<userName>).*?(?=</userName>)'`
+            
+            echo -e "\$THE_USERID \\c" > /tmp/user_id.txt
+            """
       }
     }
     stage('Install dependencies') {
