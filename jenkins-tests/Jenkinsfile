@@ -11,8 +11,7 @@ pipeline {
   stages {
     stage('Get Current UserName') {
       steps{
-        sh """
-            apt install curl
+        sh '
             /usr/bin/curl -k -s -u \
             \$USERNAME:\$PASSWORD -o \
             /tmp/api.xml \
@@ -21,7 +20,7 @@ pipeline {
             THE_USERID=`cat /tmp/api.xml | grep -oP '(?<=<userId>).*?(?=</userId>)'`
             
             echo -e "\$THE_USERID \\c" > /tmp/user_id.txt
-            """
+            '
       }
     }
     stage('Install dependencies') {
