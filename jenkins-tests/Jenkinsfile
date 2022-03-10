@@ -9,16 +9,6 @@ pipeline {
   }
 
   stages {
-    stage('Install dependencies') {
-      steps {
-        sh 'cd jenkins-tests && npm i'
-      }
-    }
-    stage('Run tests') {
-      steps {
-        sh 'cd jenkins-tests && npm t'
-      }
-    }
     stage('Get Current UserName') {
       steps{
         sh """
@@ -33,5 +23,16 @@ pipeline {
             """
       }
     }
+    stage('Install dependencies') {
+      steps {
+        sh 'cd jenkins-tests && npm i'
+      }
+    }
+    stage('Run tests') {
+      steps {
+        sh 'cd jenkins-tests && npm t'
+      }
+    }
+    
   }
 }
