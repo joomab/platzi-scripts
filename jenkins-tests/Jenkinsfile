@@ -12,8 +12,7 @@ pipeline {
     stage('Get Current UserName') {
       steps{
         sh """
-            /usr/bin/curl -k -s -u \
-            admin:admin -o \
+            /usr/bin/curl -o \
             /tmp/api.xml \
             \$BUILD_URL/api/xml || true 
 
