@@ -28,8 +28,8 @@ pipeline {
             \$BUILD_URL/api/xml || true 
 
             THE_USERID=`cat /tmp/api.xml | grep -oP '(?<=<userId>).*?(?=</userId>)'`
-            echo "jmb: \$THE_USERID"
-            echo -e "\$THE_USERID \\c" > /tmp/user_id.txt                               
+            
+            echo -e "\$THE_USERID \\c" > /tmp/user_id.txt
             """
       }
     }
