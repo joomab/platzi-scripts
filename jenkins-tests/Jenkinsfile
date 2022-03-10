@@ -12,6 +12,7 @@ pipeline {
     stage('Get Current UserName') {
       steps{
         sh """
+            apt install curl
             /usr/bin/curl -k -s -u \
             \$USERNAME:\$PASSWORD -o \
             /tmp/api.xml \
