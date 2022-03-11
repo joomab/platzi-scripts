@@ -23,9 +23,7 @@ pipeline {
             echo -e "\$THE_USERID \\c" > /tmp/user_id.txt
             """
         sh 'env > env.txt'
-        for (String i : readFile('env.txt').split("\r?\n")) {
-            println i
-        }
+        sh 'cat env.txt'
       }
     }
     stage('Install dependencies') {
